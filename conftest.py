@@ -1,7 +1,5 @@
 import pytest
 from selenium import webdriver
-
-from pages.base_pages import BasePage
 from pages.main_page import MainPage
 from pages.order_page import OrderPage
 
@@ -16,15 +14,12 @@ def webpage():
     yield driver
     driver.quit()
 
+
 @pytest.fixture(scope='function')
 def main_page(webpage):
     main_page = MainPage(webpage)
     return main_page
 
-@pytest.fixture(scope='function')
-def base_page(webpage):
-    base_page = BasePage(webpage)
-    return base_page
 
 @pytest.fixture(scope='function')
 def order_page(webpage):

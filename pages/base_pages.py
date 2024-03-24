@@ -11,6 +11,10 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
+    def scrool_to_element(self, locator):
+        element = self.driver.find_element(*locator)
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
     def click_element(self, locator):
         WebDriverWait(self.driver, 5).until(expected_conditions.element_to_be_clickable(locator))
         self.driver.find_element(*locator).click()
