@@ -17,32 +17,30 @@ class OrderPage(BasePage):
             self.click_element(locator)
 
     @allure.step('Заполнение полей на странице Для кого самокат')
-    def set_order_person_page(self, name, name_locator, surname, surname_locator, address, address_locator, station,
-                  station_locator, number_phone, number_phone_locator, station_list_locator, button_next):
-        self.input_text_to_element(name_locator, name)
-        self.input_text_to_element(surname_locator, surname)
-        self.input_text_to_element(address_locator, address)
-        self.input_text_to_element(station_locator, station)
-        self.click_element(station_list_locator)
-        self.input_text_to_element(number_phone_locator, number_phone)
-        self.click_element(button_next)
+    def set_order_person_page(self, name, surname, address, station, number_phone):
+        self.input_text_to_element(OrderPageLocations.INPUT_NAME, name)
+        self.input_text_to_element(OrderPageLocations.INPUT_SURNAME, surname)
+        self.input_text_to_element(OrderPageLocations.INPUT_ADDRESS, address)
+        self.input_text_to_element(OrderPageLocations.INPUT_STATION, station)
+        self.click_element(OrderPageLocations.STATION_LIST)
+        self.input_text_to_element(OrderPageLocations.INPUT_PHONE, number_phone)
+        self.click_element(OrderPageLocations.NEXT_BUTTON)
 
     @allure.step('Получение текста заголовка Про аренду')
     def get_text_from_header_form_2(self):
         return self.get_text_from_element(OrderPageLocations.HEADER_RENT_PAGE)
 
     @allure.step('Заполнение полей на странице Про аренду')
-    def set_order_rent_page(self, date, date_locator, day_locator, days, days_locator, color_locator, comment, comment_locator,
-                  final_order_button, agree_order_locator):
+    def set_order_rent_page(self, date, comment):
 
-        self.input_text_to_element(date_locator, date)
-        self.click_element(day_locator)
-        self.click_element(days)
-        self.click_element(days_locator)
-        self.click_element(color_locator)
-        self.input_text_to_element(comment_locator, comment)
-        self.click_element(final_order_button)
-        self.click_element(agree_order_locator)
+        self.input_text_to_element(OrderPageLocations.INPUT_DATE_DELIVERY, date)
+        self.click_element(OrderPageLocations.DAY_TEXT)
+        self.click_element(OrderPageLocations.INPUT_RENTAL_TIME)
+        self.click_element(OrderPageLocations.RENTAL_TIME)
+        self.click_element(OrderPageLocations.CHECK_BOX_COLOR)
+        self.input_text_to_element(OrderPageLocations.INPUT_COMMENT, comment)
+        self.click_element(OrderPageLocations.FINISH_ORDER_BUTTON)
+        self.click_element(OrderPageLocations.AGREE_BUTTON)
 
     @allure.step('Получение текста с кнопки Посмотреть статус')
     def get_text_from_button_finish(self):

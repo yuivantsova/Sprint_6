@@ -17,9 +17,7 @@ class TestOrderPage:
     def test_order_person_page(self, order_page, name, surname, address, station, number_phone, button, result):
 
         order_page.click_to_button_order(button)
-        order_page.set_order_person_page(name, OrderPageLocations.INPUT_NAME, surname, OrderPageLocations.INPUT_SURNAME, address,
-                             OrderPageLocations.INPUT_ADDRESS, station, OrderPageLocations.INPUT_STATION, number_phone,
-                             OrderPageLocations.INPUT_PHONE, OrderPageLocations.STATION_LIST, OrderPageLocations.NEXT_BUTTON)
+        order_page.set_order_person_page(name, surname, address, station, number_phone)
         assert order_page.get_text_from_header_form_2() == result
 
     @allure.title('Проверка страницы "Про аренду"')
@@ -30,13 +28,8 @@ class TestOrderPage:
     def test_order_rent_page(self, order_page, name, surname, address, station, number_phone, date, comment, button, result):
 
         order_page.click_to_button_order(button)
-        order_page.set_order_person_page(name, OrderPageLocations.INPUT_NAME, surname, OrderPageLocations.INPUT_SURNAME, address,
-                             OrderPageLocations.INPUT_ADDRESS, station, OrderPageLocations.INPUT_STATION, number_phone,
-                             OrderPageLocations.INPUT_PHONE, OrderPageLocations.STATION_LIST, OrderPageLocations.NEXT_BUTTON)
-        order_page.set_order_rent_page(date, OrderPageLocations.INPUT_DATE_DELIVERY,OrderPageLocations.DAY_TEXT,
-                             OrderPageLocations.INPUT_RENTAL_TIME, OrderPageLocations.RENTAL_TIME, OrderPageLocations.CHECK_BOX_COLOR,
-                             comment, OrderPageLocations.INPUT_COMMENT, OrderPageLocations.FINISH_ORDER_BUTTON,
-                             OrderPageLocations.AGREE_BUTTON)
+        order_page.set_order_person_page(name, surname, address, station, number_phone)
+        order_page.set_order_rent_page(date, comment)
         assert order_page.get_text_from_button_finish() == result
 
 
